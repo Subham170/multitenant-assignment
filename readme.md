@@ -136,6 +136,20 @@ This models two tenants with different privilege levels on the same shared clust
 
 Use this config when an external IdP (e.g. Keycloak) issues tokens whose `groups` claim matches `rcb-admin` or `rr-readonly`. For local testing without OIDC, use `setup/kind-config.yaml` instead.
 
+**Obtain an access token** (Keycloak resource-owner password grant; replace placeholders with your realm client and user values—do not commit secrets):
+
+```bash
+curl -X POST "http://localhost:8081/realms/kubeflow-multitenant/protocol/openid-connect/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "client_id=kubeflow-client" \
+  -d "client_secret=<your-client-secret>" \
+  -d "username=<your-username>" \
+  -d "password=<your-password>" \
+  -d "grant_type=password"
+```
+
+The response includes an `access_token` you can pass to `kubectl` or other clients configured for OIDC authentication.
+
 ### 5.6 Resource Quotas
 
 Each tenant namespace has a `ResourceQuota` (`tenant-quota`) limiting:
