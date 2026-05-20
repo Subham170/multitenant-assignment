@@ -1,0 +1,19 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+- role: control-plane
+  image: kindest/node:v1.29.4
+
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+      extraArgs:
+        oidc-issuer-url: "http://host.docker.internal:8081/realms/kubeflow-multitenant"
+        oidc-client-id: "kubeflow-client"
+        oidc-username-claim: "preferred_username"
+        oidc-groups-claim: "groups"
+
+- role: worker
+  image: kindest/node:v1.29.4
