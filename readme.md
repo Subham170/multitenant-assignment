@@ -233,6 +233,20 @@ This regenerates `pipelines/rcb_pipeline.yaml` and `pipelines/rr_pipeline.yaml` 
 
 Install Kubeflow Pipelines (standalone) on the cluster, port-forward to the UI, upload the compiled YAML artifacts, and submit runs per tenant namespace.
 
+After Keycloak and Kubeflow are running in the cluster, use separate terminals to reach the UIs on localhost:
+
+**Keycloak** (IdP on port 8081):
+
+```bash
+kubectl port-forward -n keycloak svc/keycloak-service 8081:8080
+```
+
+**Kubeflow Pipelines UI** (on port 8080):
+
+```bash
+kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
+```
+
 ---
 
 ## 8. Pipelines
