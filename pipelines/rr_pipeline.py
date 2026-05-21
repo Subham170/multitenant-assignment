@@ -16,10 +16,13 @@ def train_model():
     model = DecisionTreeClassifier(max_depth=3, random_state=42)
     model.fit(X, y)
 
-    prediction = int(model.predict([X[0]])[0])
-
+    # Predict on different wine rows to show varied class labels
+    samples = [0, 50, 100]
     print("RR Pipeline")
-    print("Prediction:", prediction)
+    for i in samples:
+        pred = int(model.predict([X[i]])[0])
+        actual = int(y[i])
+        print(f"  sample {i}: predicted={pred}, actual={actual}")
 
 @dsl.pipeline(name="rr-pipeline")
 def rr_pipeline():

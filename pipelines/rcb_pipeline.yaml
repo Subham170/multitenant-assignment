@@ -36,8 +36,11 @@ deploymentSpec:
           \ import load_iris\n    from sklearn.linear_model import LogisticRegression\n\
           \n    iris = load_iris()\n\n    X = iris.data\n    y = iris.target\n\n \
           \   model = LogisticRegression(max_iter=200)\n\n    model.fit(X, y)\n\n\
-          \    prediction = model.predict([X[0]])\n\n    print(\"RCB Pipeline\")\n\
-          \    print(\"Prediction:\", prediction)\n\n"
+          \    # Predict on different iris rows (setosa, versicolor, virginica regions)\n\
+          \    samples = [0, 50, 100]\n    print(\"RCB Pipeline Running...\")\n  \
+          \  for i in samples:\n        pred = model.predict([X[i]])[0]\n        actual\
+          \ = y[i]\n        print(f\"  sample {i}: predicted={pred}, actual={actual}\"\
+          )\n\n"
         image: python:3.10
 pipelineInfo:
   name: rcb-ml-pipeline

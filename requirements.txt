@@ -1,3 +1,19 @@
+# Install once (host machine, before compiling pipelines):
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements.txt
+#
+# Used by pipelines/rcb_pipeline.py and pipelines/rr_pipeline.py on the host:
+#   kfp (dsl, compiler)
+#
+# RCB component runtime (packages_to_install in rcb_pipeline.py):
+#   pandas, scikit-learn
+#
+# RR component runtime (packages_to_install in rr_pipeline.py):
+#   scikit-learn
+#
+# Optional cluster scripting:
+#   kubernetes
+
 certifi==2026.4.22
 cffi==2.0.0
 charset-normalizer==3.4.7

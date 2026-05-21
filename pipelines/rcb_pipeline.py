@@ -20,10 +20,13 @@ def train_model():
 
     model.fit(X, y)
 
-    prediction = model.predict([X[0]])
-
-    print("RCB Pipeline")
-    print("Prediction:", prediction)
+    # Predict on different iris rows (setosa, versicolor, virginica regions)
+    samples = [0, 50, 100]
+    print("RCB Pipeline Running...")
+    for i in samples:
+        pred = model.predict([X[i]])[0]
+        actual = y[i]
+        print(f"  sample {i}: predicted={pred}, actual={actual}")
 
 @dsl.pipeline(
     name="rcb-ml-pipeline"
